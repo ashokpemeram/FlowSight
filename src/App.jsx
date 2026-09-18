@@ -3,7 +3,7 @@ import axios from 'axios';
 import { buildPayload, describeVolume, FALLBACK_LOCATION, sessionFor, weatherDetails } from './traffic';
 
 const weatherClient = axios.create({ baseURL: 'https://api.open-meteo.com/v1' });
-const predictionClient = axios.create({ baseURL: '/api' });
+const predictionClient = axios.create({ baseURL: 'https://traffic-volume-prediction.onrender.com' });
 
 function formatError(error, fallback) {
   return error.response?.data?.error || fallback;
