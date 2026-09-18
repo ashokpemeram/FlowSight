@@ -3,7 +3,9 @@ import axios from 'axios';
 import { buildPayload, describeVolume, FALLBACK_LOCATION, sessionFor, weatherDetails } from './traffic';
 
 const weatherClient = axios.create({ baseURL: 'https://api.open-meteo.com/v1' });
-const predictionClient = axios.create({ baseURL: 'https://traffic-volume-prediction.onrender.com' });
+// Keep model requests same-origin. In production Vercel serves this route from
+// api/predict.js; Vite proxies it to the same model during local development.
+const predictionClient = axios.create({ baseURL: '/api' });
 
 function formatError(error, fallback) {
   return error.response?.data?.error || fallback;
